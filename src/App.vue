@@ -11,7 +11,7 @@
       <MovieList :movies="movies" />
     </Box>
     <Box>
-      <AddForm />
+      <AddForm @add-movie="movies.push($event)" />
     </Box>
   </div>
 </template>
