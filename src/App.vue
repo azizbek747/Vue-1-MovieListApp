@@ -8,7 +8,8 @@
       <AppFilter />
     </Box>
     <Box>
-      <MovieList :movies="movies" @onToggle="ontoggle" />
+      <MovieList v-if="movies.length" :movies="movies" @onToggle="ontoggle" @onRemove="onRemove" />
+      <h2 v-else class="text-center">Kinolar yo'q</h2>
     </Box>
     <Box>
       <AddForm @add-movie="movies.push($event)" />
@@ -66,6 +67,10 @@ export default {
         }
         return movie;
       });
+    },
+
+    onRemove(id) {
+      this.movies = this.movies.filter(movie => movie.id !== id)
     },
   },
 

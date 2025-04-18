@@ -5,8 +5,10 @@
       :key="movie.id"
       :movie="movie"
       @onToggle="$emit('onToggle', $event)"
+      @onRemove="$emit('onRemove', $event)"
     />
   </ul>
+
 </template>
 
 <script>
