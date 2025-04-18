@@ -1,14 +1,14 @@
 <template>
   <div class="container">
     <Box>
-      <AppInfo />
-    </Box>
+      <AppInfo :moviesCount="movies.length" :favouriteMoviesCount="movies.filter(m => m.favourite).length" />
+    </Box> 
     <Box>
       <SearchPanel />
       <AppFilter />
     </Box>
     <Box>
-      <MovieList />
+      <MovieList :movies="movies" />
     </Box>
     <Box>
       <AddForm />
@@ -33,6 +33,28 @@ export default {
     AddForm,
     Box,
   },
+  data: () => ({
+     movies: [
+      {
+        name: "Omar",
+        viewers: 6098,
+        like: true,
+        favourite: false
+      },
+      {
+        name: "Empire of Osman",
+        viewers: 6098,
+        like: false,
+        favourite: true
+      },
+      {
+        name: "Ertugrul",
+        viewers: 6098,
+        like: true,
+        favourite: false
+      },
+     ] 
+    }),
 };
 </script>
 
