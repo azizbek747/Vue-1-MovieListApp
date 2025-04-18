@@ -36,6 +36,7 @@ export default {
     addMovie() {
       if (this.name && this.viewers) {
         this.$emit("add-movie", {
+          id: Date.now(),
           name: this.name,
           viewers: this.viewers,
           like: false,

@@ -8,7 +8,7 @@
       <AppFilter />
     </Box>
     <Box>
-      <MovieList :movies="movies" />
+      <MovieList :movies="movies" @onToggle="ontoggle" />
     </Box>
     <Box>
       <AddForm @add-movie="movies.push($event)" />
@@ -34,27 +34,41 @@ export default {
     Box,
   },
   data: () => ({
-     movies: [
+    movies: [
       {
+        id: 1,
         name: "Omar",
         viewers: 6098,
         like: true,
         favourite: false
       },
       {
+        id: 2,
         name: "Empire of Osman",
         viewers: 6098,
         like: false,
         favourite: true
       },
       {
+        id: 3,
         name: "Ertugrul",
         viewers: 6098,
         like: true,
         favourite: false
       },
-     ] 
-    }),
+    ] 
+  }),
+  methods: {
+    ontoggle({id, prop}) {
+      this.movies = this.movies.map((movie) => {
+        if (movie.id === id) {
+          return { ...movie, [prop]: !movie[prop] };
+        }
+        return movie;
+      });
+    },
+  },
+
 };
 </script>
 
