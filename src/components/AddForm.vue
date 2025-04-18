@@ -7,15 +7,13 @@
           type="text"
           class="form-control new-movie-name"
           placeholder="Kino nomi?"
-          :value="name"
-          @input="name = $event.target.value"
+          v-model="name"
         />
         <input
           type="text"
           class="form-control new-movie-count"
           placeholder="Nechi marta ko'rilgan?"
-          :value="viewers"
-          @input="viewers = $event.target.value"
+          v-model="viewers"
         />
       </div>
       <div class="text-end mt-3">
