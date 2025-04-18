@@ -1,8 +1,7 @@
 <template>
-  <!-- <li class="list-group-item d-flex justify-content-between" :class="{'like': like}" @click="onLike"  > -->
-  <li class="list-group-item d-flex justify-content-between" >
-    <span class="list-group-item-label">Omar</span>
-    <input type="text" class="list-group-item-input" value="811" />
+  <li class="list-group-item d-flex justify-content-between" :class="[{'like': movie.like}, {'favourite': movie.favourite}]" >
+    <span class="list-group-item-label">{{ movie.name }}</span>
+    <input type="text" class="list-group-item-input" :value="movie.viewers" />
     <div class="d-flex justify-content-center align-items-center">
       <button type="button" class="btn-cookie btn-sm">
         <i class="fas fa-cookie"></i>
@@ -18,17 +17,12 @@
 
 <script>
   export default {
-
-    // data() {
-    //   return {
-    //     like: false
-    //   }
-    // },
-    // methods: {
-    //   onLike() {
-    //     this.like = !this.like
-    //   }
-    // }
+    props: {
+      movie: {
+        type: Object,
+        required: true
+      }
+    }
   }
 </script>
 
