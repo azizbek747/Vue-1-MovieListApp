@@ -4,11 +4,11 @@
       <AppInfo :moviesCount="movies.length" :favouriteMoviesCount="movies.filter(m => m.favourite).length" />
     </Box> 
     <Box>
-      <SearchPanel />
+      <SearchPanel :onUpdateTerm="onUpdateTerm" />
       <AppFilter />
     </Box>
     <Box>
-      <MovieList v-if="movies.length" :movies="movies" @onToggle="ontoggle" @onRemove="onRemove" />
+      <MovieList v-if="movies.length" :movies="onSearch(movies, term)" @onToggle="ontoggle" @onRemove="onRemove" />
       <h2 v-else class="text-center">Kinolar yo'q</h2>
     </Box>
     <Box>
@@ -35,6 +35,7 @@ export default {
     Box,
   },
   data: () => ({
+    term: "",
     movies: [
       {
         id: 1,
@@ -57,7 +58,7 @@ export default {
         like: true,
         favourite: false
       },
-    ] 
+    ],
   }),
   methods: {
     ontoggle({id, prop}) {
@@ -72,6 +73,18 @@ export default {
     onRemove(id) {
       this.movies = this.movies.filter(movie => movie.id !== id)
     },
+
+    onSearch(arr, term) {
+      if (term) {
+        return arr.filter(item => item.name.toLowerCase().includes(term.toLowerCase()))
+      } else {
+        return arr
+      }
+    },
+
+    onUpdateTerm(term) {
+      this.term = term
+    }
   },
 
 };
